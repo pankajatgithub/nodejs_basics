@@ -1,12 +1,13 @@
+const path = require('path');
 const express = require("express");
 const router = express.Router();
 
-router.use("/add-product",(req,res,next)=>{
+router.get("/add-product",(req,res,next)=>{
     console.log("In another middleware");
-    res.send('<form action="/admin/product" method = "POST"><input type ="text" name ="title"></input><button type="submit">submit</button> </form>');
+    res.sendFile(path.join(__dirname,'../','views','add-product.html')); //__dirname is global path to node js folder,'../'is one level up,views is folder name, add-product is file name to load in this path
 });
 
-router.post("/product",(req,res,next)=>{
+router.post("/add-product",(req,res,next)=>{
  console.log(req.body);
  
     res.redirect("/");
